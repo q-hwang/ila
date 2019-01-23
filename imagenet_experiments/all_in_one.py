@@ -45,18 +45,16 @@ def wrap_cw_l2(attack_class, params):
 ifgsm_params = {'learning_rate': 0.008, 'epsilon': 0.03}
 momentum_ifgsm_params = {'learning_rate': 0.018, 'epsilon': 0.03, 'decay': 0.9}
 cw2_params = {'targeted': False}            
-attacks = [(attack_name(momentum_ifgsm), wrap_attack(momentum_ifgsm, momentum_ifgsm_params))]
-
-# [(attack_name(ifgsm), wrap_attack(ifgsm, ifgsm_params))]
-#           (attack_name(momentum_ifgsm), wrap_attack(momentum_ifgsm, momentum_ifgsm_params))]
+attacks = [(attack_name(ifgsm), wrap_attack(ifgsm, ifgsm_params)),
+          (attack_name(momentum_ifgsm), wrap_attack(momentum_ifgsm, momentum_ifgsm_params))]
           
 
 data_preprocess = (batch_size, mean_arr, stddev_arr)
 
-source_models = [('SqueezeNet1.0',models.squeezenet1_0)]
-#                  ('DenseNet121',models.densenet121), 
-#                  ('SqueezeNet1.0',models.squeezenet1_0),
-#                  ('alexnet',models.alexnet)]
+source_models = [('SqueezeNet1.0',models.squeezenet1_0)
+                 ('DenseNet121',models.densenet121), 
+                 ('SqueezeNet1.0',models.squeezenet1_0),
+                 ('alexnet',models.alexnet)]
 
 
 transfer_models = [('ResNet18',models.resnet18), 
@@ -212,8 +210,7 @@ def complete_loop(sample_num, out_df,with_projection):
           
 def save_to_csv(out_df):
      #save csv
-    out_df.to_csv("SqueezeNet_ILA_projection_momentum_all_rest.csv", sep=',', encoding='utf-8')
-#     out_df.to_csv("ResNet18_ILA_alpha_ifgsm_all_coeff={}.csv".format(str(sys.argv[1])), sep=',', encoding='utf-8')
+    out_df.to_csv("imagenet_result.csv", sep=',', encoding='utf-8')
 
     
 

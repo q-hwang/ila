@@ -1,6 +1,6 @@
 
 import sys
-from adversarial import mid_attack_adjust_generate  #adversarial.py must be master's version
+from adversarial import mid_attack_adjust_generate  
 from various_attacks import pgd_ifgsm, ifgsm, momentum_ifgsm, deepfool, pgd_new
 from cifar10models import *
 import numpy as np
@@ -150,7 +150,7 @@ def complete_loop(sample_num, out_df):
     trainloader, testloader = get_data(*data_preprocess)
     for model_class, source_weight_path in source_models:
         model = model_class().cuda()
-        model.load_state_dict(torch.load(source_weight_path)['net'])
+        model.load_state_dict(torch.load(source_weight_path))
         model.eval()
         dic = model._modules
         for attack_name, attack in attacks:

@@ -88,7 +88,7 @@ class Mid_layer_target_Loss(torch.nn.Module):
             y_norm = y / y.norm()
         angle_loss = torch.mm(x_norm, y_norm.transpose(0,1))
         magnitude_gain = y.norm() / x.norm()
-#         print(str(angle_loss.float()) + " " + str(magnitude_gain.float()) )
+        print(str(angle_loss.float()) + " " + str(magnitude_gain.float()) )
         return angle_loss + magnitude_gain * coeff
 
 
